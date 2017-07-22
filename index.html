@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>G-Editor 1.3 Online</title>
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" href="main.css" />
+    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="bookmark" href="favicon.ico"/>
+<style type="text/css">
+
+.project-list{
+	/*display: none;*/
+	position: fixed;
+	z-index: 999;
+	width: 500px;
+	height: 500px;
+	/*margin: auto;*/
+	left: 30%;
+	/*right: 0;*/
+	top: 20%;
+	/*bottom: 0;*/
+	padding: 5px;
+	background-color: rgba(200,200,200,0.9);
+
+    border: 2px dashed rgba(255,255,255,0.4);
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    -moz-box-shadow: 0 0 0 4px #BDBBF2, 2px 1px 4px 4px rgba(10,10,0,.5);
+    -webkit-box-shadow: 0 0 0 4px #BDBBF2, 2px 1px 4px 4px rgba(10,10,0,.5);
+    box-shadow: 0 0 0 4px #BDBBF2, 2px 1px 6px 4px rgba(10,10,0,.5);
+}
+.title-bar{
+	height: 30px;
+	background-color: gray;
+}
+.title-bar a{
+	margin-left: 10px;
+}
+.title-bar span{
+	width: 400px;
+	padding:5px 10px;
+	text-align: center;
+	font-size: 18px;
+}
+.list{
+	padding: 10px;
+	overflow-y: scroll;
+	width: 100%;
+	height: 450px;
+}
+</style></head>
+
+<body>
+
+<object type="application/x-shockwave-flash" data="Scratch.swf" width="1366" height="638" id="scratch"><param name="allowscriptaccess" value="always"><param name="allowfullscreen" value="true"><param name="wmode" value="direct"><param name="menu" value="false"></object>
+
+<script type="text/javascript" src="jquery-2.1.1.min.js"></script>
+
+
+<script type="text/javascript" src="swfobject.js"></script>
+<script type="text/javascript" src="scratch.js"></script>
+<script>
+$(document).ready(function(){
+    $("#scratch").attr({
+      "width" : document.body.clientWidth,
+      "height" : document.body.clientHeight
+    });
+});
+</script>
+<center>
+
+</center>
+<div id="goodcover"></div>
+	
+<div id="code">
+  <div class="close1"><a href="javascript:void(0)" id="closebt"><img src="close.gif"></a></div>
+  <div class="goodtxt">
+    <p>请稍安勿躁，等待加载</p>
+    <p>G-Editor 1.3 Online</p>
+  </div>
+ <div class="code-img"> <img id="ewmsrc"  src="code.png"></div>
+</div>
+
+<script>
+$(function() {
+    //alert($(window).height());
+    $(document).ready(function(){
+        $('#code').center();
+        $('#goodcover').show();
+        $('#code').fadeIn();
+    });
+    $('#closebt').click(function() {
+        $('#code').hide();
+        $('#goodcover').hide();
+    });
+	$('#goodcover').click(function() {
+        $('#code').hide();
+        $('#goodcover').hide();
+    });
+    /*var val=$(window).height();
+	var codeheight=$("#code").height();
+    var topheight=(val-codeheight)/2;
+	$('#code').css('top',topheight);*/
+    jQuery.fn.center = function(loaded) {
+        var obj = this;
+        body_width = parseInt($(window).width());
+        body_height = parseInt($(window).height());
+        block_width = parseInt(obj.width());
+        block_height = parseInt(obj.height());
+
+        left_position = parseInt((body_width / 2) - (block_width / 2) + $(window).scrollLeft());
+        if (body_width < block_width) {
+            left_position = 0 + $(window).scrollLeft();
+        };
+
+        top_position = parseInt((body_height / 2) - (block_height / 2) + $(window).scrollTop());
+        if (body_height < block_height) {
+            top_position = 0 + $(window).scrollTop();
+        };
+
+        if (!loaded) {
+
+            obj.css({
+                'position': 'absolute'
+            });
+            obj.css({
+                'top': ($(window).height() - $('#code').height()) * 0.5,
+                'left': left_position
+            });
+            $(window).bind('resize', function() {
+                obj.center(!loaded);
+            });
+            $(window).bind('scroll', function() {
+                obj.center(!loaded);
+            });
+
+        } else {
+            obj.stop();
+            obj.css({
+                'position': 'absolute'
+            });
+            obj.animate({
+                'top': top_position
+            }, 200, 'linear');
+        }
+    }
+
+})
+</script>
+
+</body></html>
